@@ -119,6 +119,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
     "sekizai.context_processors.sekizai",
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
 )
 
 INSTALLED_APPS = (
@@ -139,6 +141,7 @@ INSTALLED_APPS = (
 
     'password_reset',
     'sekizai',
+    'social.apps.django_app.default',
 )
 
 if 'SENTRY_DSN' in environ:
@@ -193,6 +196,21 @@ if 'CANONICAL_HOSTNAME' in environ:
 SERVER_EMAIL = DEFAULT_FROM_EMAIL = environ['FROM_EMAIL']
 
 # SESSION_SERIALIZER = 'djangopeople.serializers.JSONSerializer'
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1680776608858476'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'a4bad71ccc70f69296ec15285f481c2e'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'locale': 'ru_RU',
+  'fields': 'id, name, email, age_range'
+}
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

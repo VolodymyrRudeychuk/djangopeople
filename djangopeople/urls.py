@@ -46,6 +46,10 @@ urlpatterns = patterns(
     url(r'^static/profiles/_thumbs/.*', gone, name='gone'),
     url(r'^static/img/.*', gone),
 
+    # social auth
+    url('', include('social.apps.django_app.urls', namespace='social')),
+
+
     #openid stuff
     # url(
     #     r'^openid/$', 'djangopeople.django_openidconsumer.views.begin', {

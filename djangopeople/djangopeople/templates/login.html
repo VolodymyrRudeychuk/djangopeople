@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles sekizai_tags %}
+{% load staticfiles sekizai_tags backend_utils %}
 
 {% block title %}{% trans "Log in" %} |{% endblock %}
 
@@ -69,6 +69,10 @@
 		</div>
 	</form>
 
+    <h2>Login with other providers</h2>
+      <a href="{% url 'social:begin' 'facebook' %}">
+        <i class="fa fa-facebook"></i> Login with Facebook
+      </a>
 {#	<h2>{% trans "Or sign in with your OpenID" %}</h2>#}
 {##}
 {#	<form method="post" action="{% url "openid_begin" %}">#}
